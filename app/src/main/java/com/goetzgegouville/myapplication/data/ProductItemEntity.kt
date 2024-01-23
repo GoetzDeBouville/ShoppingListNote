@@ -3,7 +3,7 @@ package com.goetzgegouville.myapplication.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "items")
+@Entity(tableName = "product_table")
 data class ProductItemEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
