@@ -1,6 +1,5 @@
 package com.goetzgegouville.myapplication.data.impl
 
-import androidx.room.util.getColumnIndexOrThrow
 import com.goetzgegouville.myapplication.data.ProductItemEntity
 import com.goetzgegouville.myapplication.data.ShoppingListItemEntity
 import com.goetzgegouville.myapplication.data.db.ProductItemDao

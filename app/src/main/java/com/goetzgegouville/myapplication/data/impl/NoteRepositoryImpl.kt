@@ -5,7 +5,7 @@ import com.goetzgegouville.myapplication.data.db.NoteItemDao
 import com.goetzgegouville.myapplication.domain.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
-class NoteRepositoryImpl(private val dao: NoteItemDao): NoteRepository {
+class NoteRepositoryImpl(private val dao: NoteItemDao) : NoteRepository {
     override suspend fun insertNoteToDb(item: NoteItemEntity) {
         dao.insertNoteToDb(item)
     }
