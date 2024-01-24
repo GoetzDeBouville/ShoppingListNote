@@ -76,6 +76,8 @@ dependencies {
     implementation(libs.compose.viewmodel)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.compose.bom))
+    implementation(libs.compose.material)
+    implementation(libs.constraintlayout)
     implementation(libs.bundles.compose)
 
     testImplementation(libs.junit)
