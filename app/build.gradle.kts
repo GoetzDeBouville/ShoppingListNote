@@ -55,6 +55,7 @@ android {
 dependencies {
     // DI Hilt
     implementation(libs.hilt.android)
+    debugImplementation(libs.androidx.ui.tooling)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.androidx)
     kapt(libs.hilt.androidx.compiler)
@@ -77,6 +78,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material)
+    implementation(libs.compose.material3.alpha)
     implementation(libs.constraintlayout)
     implementation(libs.bundles.compose)
 

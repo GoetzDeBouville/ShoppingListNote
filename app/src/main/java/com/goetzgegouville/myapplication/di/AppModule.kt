@@ -6,9 +6,9 @@ import com.goetzgegouville.myapplication.data.db.MainDb
 import com.goetzgegouville.myapplication.data.impl.NoteRepositoryImpl
 import com.goetzgegouville.myapplication.data.impl.ProductRepositoryImpl
 import com.goetzgegouville.myapplication.data.impl.ShoppingListRepositoryImpl
-import com.goetzgegouville.myapplication.domain.NoteRepository
-import com.goetzgegouville.myapplication.domain.ProductRepository
-import com.goetzgegouville.myapplication.domain.ShoppingListRepository
+import com.goetzgegouville.myapplication.domain.api.NoteRepository
+import com.goetzgegouville.myapplication.domain.api.ProductRepository
+import com.goetzgegouville.myapplication.domain.api.ShoppingListRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

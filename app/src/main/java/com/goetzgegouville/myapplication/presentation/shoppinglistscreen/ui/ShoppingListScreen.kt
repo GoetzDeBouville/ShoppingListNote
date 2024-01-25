@@ -1,4 +1,4 @@
-package com.goetzgegouville.myapplication.presentation.shoppinglistscreen
+package com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentHeight

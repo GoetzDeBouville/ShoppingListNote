@@ -11,8 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.goetzgegouville.myapplication.ui.theme.BottomNavColor
 import com.goetzgegouville.myapplication.ui.theme.DefaultIconColor
-import com.goetzgegouville.myapplication.ui.theme.GreenLight
-import com.goetzgegouville.myapplication.ui.theme.LightBlue
+import com.goetzgegouville.myapplication.ui.theme.LightGreen
 
 @Composable
 fun BottomNav(navController: NavHostController) {
@@ -31,7 +30,7 @@ fun BottomNav(navController: NavHostController) {
             BottomNavigationItem(
                 selected = currentRoute == bottomNavItem.route,
                 onClick = {
-                          navController.navigate(bottomNavItem.route)
+                    navController.navigate(bottomNavItem.route)
                 },
                 icon = {
                     Icon(
@@ -44,7 +43,7 @@ fun BottomNav(navController: NavHostController) {
                         text = bottomNavItem.title
                     )
                 },
-                selectedContentColor = GreenLight,
+                selectedContentColor = LightGreen,
                 unselectedContentColor = DefaultIconColor,
                 alwaysShowLabel = false
             )

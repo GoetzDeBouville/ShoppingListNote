@@ -27,6 +27,8 @@ nav = "2.7.6"
 room = "2.6.1"
 material = "1.5.4"
 constraintlayout = "1.0.1"
+uiTooling = "1.6.0"
+material-alfa = "1.2.0-rc01"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -41,6 +43,7 @@ compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-material3-alpha = { module = "androidx.compose.material3:material3", version.ref = "material-alfa" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "material" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayout" }
 compose-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewmodel" }
@@ -66,6 +69,7 @@ navigation = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
 
 [bundles]
 compose = [

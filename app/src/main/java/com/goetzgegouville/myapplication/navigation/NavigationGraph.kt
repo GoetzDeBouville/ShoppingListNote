@@ -4,11 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.goetzgegouville.myapplication.presentation.aboutscreen.AboutScreen
 import com.goetzgegouville.myapplication.presentation.notelistscreen.NoteListScreen
 import com.goetzgegouville.myapplication.presentation.settingsscreen.SettingsScreen
-import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ShoppingListScreen
+import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ui.ShoppingListScreen
 import com.goetzgegouville.myapplication.utils.Routes
 
 @Composable

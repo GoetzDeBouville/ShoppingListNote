@@ -1,7 +1,6 @@
 package com.goetzgegouville.myapplication.presentation.mainscreen
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FabPosition
 import androidx.compose.material.Scaffold
@@ -16,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.goetzgegouville.myapplication.R
 import com.goetzgegouville.myapplication.navigation.NavigationGraph
-import com.goetzgegouville.myapplication.ui.theme.GreenLight
+import com.goetzgegouville.myapplication.ui.theme.LightGreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -30,7 +29,7 @@ fun MainScreen() {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { },
-                containerColor = GreenLight,
+                containerColor = LightGreen,
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
             ) {

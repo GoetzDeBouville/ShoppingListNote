@@ -57,7 +57,7 @@ fun ShoppingListNoteTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = GreenLight.toArgb()
+            window.statusBarColor = LightGreen.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
