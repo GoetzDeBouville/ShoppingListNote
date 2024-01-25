@@ -1,7 +1,7 @@
-package com.goetzgegouville.myapplication.domain
+package com.goetzgegouville.myapplication.domain.api
 
-import com.goetzgegouville.myapplication.data.ProductItemEntity
-import com.goetzgegouville.myapplication.data.ShoppingListItemEntity
+import com.goetzgegouville.myapplication.data.models.ProductItemEntity
+import com.goetzgegouville.myapplication.data.models.ShoppingListItemEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {

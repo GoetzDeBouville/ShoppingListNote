@@ -1,8 +1,8 @@
 package com.goetzgegouville.myapplication.data.impl
 
-import com.goetzgegouville.myapplication.data.ShoppingListItemEntity
+import com.goetzgegouville.myapplication.data.models.ShoppingListItemEntity
 import com.goetzgegouville.myapplication.data.db.ShoppingListItemDao
-import com.goetzgegouville.myapplication.domain.ShoppingListRepository
+import com.goetzgegouville.myapplication.domain.api.ShoppingListRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

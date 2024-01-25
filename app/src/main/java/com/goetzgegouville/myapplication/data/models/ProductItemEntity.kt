@@ -1,4 +1,4 @@
-package com.goetzgegouville.myapplication.data
+package com.goetzgegouville.myapplication.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

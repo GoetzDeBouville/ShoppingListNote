@@ -1,20 +1,12 @@
-package com.goetzgegouville.myapplication.data.db
+package com.goetzgegouville.myapplication.domain.api
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Query
-import androidx.room.Upsert
 import com.goetzgegouville.myapplication.data.models.ShoppingListItemEntity
 import kotlinx.coroutines.flow.Flow
 
-@Dao
-interface ShoppingListItemDao {
-    @Upsert
+interface ShoppingListRepository {
     suspend fun insertListToDb(item: ShoppingListItemEntity)
 
-    @Delete
     suspend fun removeListFromDb(item: ShoppingListItemEntity)
 
-    @Query("SELECT * FROM shopping_list_name")
     fun getShopingListElements(): Flow<List<ShoppingListItemEntity>>
 }

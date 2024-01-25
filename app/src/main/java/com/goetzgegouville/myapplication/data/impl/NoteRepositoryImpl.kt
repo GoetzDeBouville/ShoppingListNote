@@ -1,8 +1,8 @@
 package com.goetzgegouville.myapplication.data.impl
 
-import com.goetzgegouville.myapplication.data.NoteItemEntity
+import com.goetzgegouville.myapplication.data.models.NoteItemEntity
 import com.goetzgegouville.myapplication.data.db.NoteItemDao
-import com.goetzgegouville.myapplication.domain.NoteRepository
+import com.goetzgegouville.myapplication.domain.api.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
 class NoteRepositoryImpl(private val dao: NoteItemDao) : NoteRepository {

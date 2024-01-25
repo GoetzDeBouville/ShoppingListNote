@@ -1,9 +1,9 @@
 package com.goetzgegouville.myapplication.data.impl
 
-import com.goetzgegouville.myapplication.data.ProductItemEntity
-import com.goetzgegouville.myapplication.data.ShoppingListItemEntity
+import com.goetzgegouville.myapplication.data.models.ProductItemEntity
+import com.goetzgegouville.myapplication.data.models.ShoppingListItemEntity
 import com.goetzgegouville.myapplication.data.db.ProductItemDao
-import com.goetzgegouville.myapplication.domain.ProductRepository
+import com.goetzgegouville.myapplication.domain.api.ProductRepository
 import kotlinx.coroutines.flow.Flow
 
 class ProductRepositoryImpl(private val dao: ProductItemDao) : ProductRepository {
