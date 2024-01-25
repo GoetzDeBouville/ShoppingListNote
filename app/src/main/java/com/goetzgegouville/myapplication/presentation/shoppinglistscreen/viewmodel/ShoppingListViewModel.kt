@@ -8,7 +8,10 @@ import com.goetzgegouville.myapplication.domain.models.ShoppingListItem
 import com.goetzgegouville.myapplication.presentation.dialog.DialogEvent
 import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ShoppingListEvent
 import com.goetzgegouville.myapplication.utils.DialogController
+import com.goetzgegouville.myapplication.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +21,8 @@ class ShoppingListViewModel @Inject constructor(
 ) : ViewModel(), DialogController {
     private val list = interactor.getShopingListElements()
     private var listItem: ShoppingListItem? = null
+    private val _uiEvent = Channel<UiEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     override var dialogTitle = mutableStateOf("")
         private set
@@ -45,7 +50,9 @@ class ShoppingListViewModel @Inject constructor(
                 }
             }
 
-            is ShoppingListEvent.OnItemClick -> Unit
+            is ShoppingListEvent.OnItemClick -> {
+                sendUiEvent(UiEvent.Navigate(event.route))
+            }
             is ShoppingListEvent.OnShowDeleteDialog -> {
                 listItem = event.item
                 openDialog.value = true
@@ -76,6 +83,12 @@ class ShoppingListViewModel @Inject constructor(
                 openDialog.value = false
             }
             is DialogEvent.OnTextChange -> editTableText.value = event.text
+        }
+    }
+
+    private fun sendUiEvent(event: UiEvent){
+        viewModelScope.launch {
+            _uiEvent.send(event)
         }
     }
 }
