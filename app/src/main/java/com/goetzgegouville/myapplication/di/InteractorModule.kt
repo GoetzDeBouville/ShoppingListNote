@@ -9,8 +9,11 @@ import com.goetzgegouville.myapplication.domain.api.ProductRepository
 import com.goetzgegouville.myapplication.domain.api.ShoppingListDbConverter
 import com.goetzgegouville.myapplication.domain.api.ShoppingListInteractor
 import com.goetzgegouville.myapplication.domain.api.ShoppingListRepository
+import com.goetzgegouville.myapplication.domain.impl.NoteDbConverterImpl
 import com.goetzgegouville.myapplication.domain.impl.NoteInteractorImpl
+import com.goetzgegouville.myapplication.domain.impl.ProductDbConverterImpl
 import com.goetzgegouville.myapplication.domain.impl.ProductInteractorImpl
+import com.goetzgegouville.myapplication.domain.impl.ShoppingListDbConverterImpl
 import com.goetzgegouville.myapplication.domain.impl.ShoppingListInteractorImpl
 import dagger.Module
 import dagger.Provides
@@ -20,6 +23,15 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
 class InteractorModule {
+    @Provides
+    fun provideShoppingListDbConverter(): ShoppingListDbConverter = ShoppingListDbConverterImpl()
+
+    @Provides
+    fun provideProductDbConverter(): ProductDbConverter = ProductDbConverterImpl()
+
+    @Provides
+    fun provideNoteDbConverter(): NoteDbConverter = NoteDbConverterImpl()
+
     @Provides
     fun provideNoteInteractor(
         converter: NoteDbConverter,
