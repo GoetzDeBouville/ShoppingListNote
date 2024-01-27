@@ -1,4 +1,4 @@
-package com.goetzgegouville.myapplication.utils
+package com.goetzgegouville.myapplication.presentation.dialog
 
 import androidx.compose.runtime.MutableState
 
@@ -7,4 +7,5 @@ interface DialogController {
     val editTableText: MutableState<String>
     val openDialog: MutableState<Boolean>
     val showEditableText: MutableState<Boolean>
+    fun onDialogEvent(event: DialogEvent)
 }

@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.goetzgegouville.myapplication.domain.api.ShoppingListInteractor
 import com.goetzgegouville.myapplication.domain.models.ShoppingListItem
+import com.goetzgegouville.myapplication.presentation.dialog.DialogController
 import com.goetzgegouville.myapplication.presentation.dialog.DialogEvent
 import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ShoppingListEvent
-import com.goetzgegouville.myapplication.utils.DialogController
 import com.goetzgegouville.myapplication.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -26,13 +26,29 @@ class ShoppingListViewModel @Inject constructor(
 
     override var dialogTitle = mutableStateOf("")
         private set
-
     override var editTableText = mutableStateOf("")
         private set
     override var openDialog = mutableStateOf(false)
         private set
     override var showEditableText = mutableStateOf(false)
         private set
+
+    override fun onDialogEvent(event: DialogEvent) {
+        when (event) {
+            is DialogEvent.OnCancel -> openDialog.value = false
+            is DialogEvent.OnConfirm -> {
+                if (showEditableText.value) {
+                    onEvent(ShoppingListEvent.OnItemSave)
+                } else {
+                    viewModelScope.launch {
+                        listItem?.let { interactor.removeListFromDb(it) }
+                    }
+                }
+                openDialog.value = false
+            }
+            is DialogEvent.OnTextChange -> editTableText.value = event.text
+        }
+    }
 
     fun onEvent(event: ShoppingListEvent) {
         when (event) {
@@ -69,24 +85,7 @@ class ShoppingListViewModel @Inject constructor(
         }
     }
 
-    fun onDialogEvent(event: DialogEvent) {
-        when (event) {
-            is DialogEvent.OnCancel -> openDialog.value = false
-            is DialogEvent.OnConfirm -> {
-                if (showEditableText.value) {
-                    onEvent(ShoppingListEvent.OnItemSave)
-                } else {
-                    viewModelScope.launch {
-                        listItem?.let { interactor.removeListFromDb(it) }
-                    }
-                }
-                openDialog.value = false
-            }
-            is DialogEvent.OnTextChange -> editTableText.value = event.text
-        }
-    }
-
-    private fun sendUiEvent(event: UiEvent){
+    private fun sendUiEvent(event: UiEvent) {
         viewModelScope.launch {
             _uiEvent.send(event)
         }
