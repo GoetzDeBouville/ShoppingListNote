@@ -33,10 +33,14 @@ class MainScreenViewModel @Inject constructor(
     private val simpleDateFormat = SimpleDateFormat("dd/mm/yyyy HH:mm:ss", Locale.ENGLISH)
     override fun onDialogEvent(event: DialogEvent) {
         when (event) {
-            is DialogEvent.OnCancel -> openDialog.value = false
+            is DialogEvent.OnCancel -> {
+                openDialog.value = false
+                editTableText.value = ""
+            }
             is DialogEvent.OnConfirm -> {
                 onEvent(MainScreenEvent.OnItemSave)
                 openDialog.value = false
+                editTableText.value = ""
             }
             is DialogEvent.OnTextChange -> editTableText.value = event.text
         }

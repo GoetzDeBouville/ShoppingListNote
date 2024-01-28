@@ -19,20 +19,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.goetzgegouville.myapplication.R
+import com.goetzgegouville.myapplication.domain.models.ShoppingListItem
 import com.goetzgegouville.myapplication.ui.theme.BlackText
 import com.goetzgegouville.myapplication.ui.theme.GrayText
 import com.goetzgegouville.myapplication.ui.theme.Green
+import com.goetzgegouville.myapplication.ui.theme.LightGreen
+import com.goetzgegouville.myapplication.ui.theme.LightYellow
 import com.goetzgegouville.myapplication.ui.theme.Red
+import com.goetzgegouville.myapplication.ui.theme.Salad
 import com.goetzgegouville.myapplication.ui.theme.Yellow
+import kotlin.random.Random
 
-@Preview(showBackground = true)
 @Composable
-fun UiShoppingListItem() {
+fun UiShoppingListItem(
+    item: ShoppingListItem
+) {
+    val progress = Random.nextFloat()
+//                   val progress = item.selectedItemsNumber.toFloat() / item.allItemsNumber
     ConstraintLayout(
         modifier = Modifier.padding(
             4.dp,
@@ -68,7 +75,7 @@ fun UiShoppingListItem() {
                     .padding(8.dp)
             ) {
                 Text(
-                    text = "[List 1]",
+                    text = item.name,
                     style = TextStyle(
                         color = BlackText,
                         fontWeight = FontWeight.Bold,
@@ -76,7 +83,7 @@ fun UiShoppingListItem() {
                     )
                 )
                 Text(
-                    text = "[23/01/2024 12:00]",
+                    text = item.time,
                     style = TextStyle(
                         color = GrayText,
                         fontSize = 12.sp
@@ -85,7 +92,17 @@ fun UiShoppingListItem() {
                 LinearProgressIndicator(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 4.dp)
+                        .padding(top = 4.dp),
+                    progress = progress,
+                    color = if (progress <= 0.3) {
+                        Red
+                    } else if (progress > 0.3 && progress < 0.5) {
+                        LightYellow
+                    } else if (progress == 1.0f) {
+                        LightGreen
+                    } else {
+                        Salad
+                    }
                 )
             }
         }
@@ -145,7 +162,7 @@ fun UiShoppingListItem() {
                 .padding(4.dp)
         ) {
             Text(
-                text = "[12/4]",
+                text = "${item.allItemsNumber}/${item.selectedItemsNumber}",
                 modifier = Modifier
                     .background(Yellow)
                     .padding(4.dp, 4.dp),

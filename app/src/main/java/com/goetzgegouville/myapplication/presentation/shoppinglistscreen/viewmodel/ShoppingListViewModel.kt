@@ -19,7 +19,7 @@ import javax.inject.Inject
 class ShoppingListViewModel @Inject constructor(
     private val interactor: ShoppingListInteractor
 ) : ViewModel(), DialogController {
-    private val list = interactor.getShopingListElements()
+    val list = interactor.getShopingListElements()
     private var listItem: ShoppingListItem? = null
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
