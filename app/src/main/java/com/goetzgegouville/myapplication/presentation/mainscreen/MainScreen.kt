@@ -12,14 +12,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.goetzgegouville.myapplication.R
 import com.goetzgegouville.myapplication.navigation.NavigationGraph
+import com.goetzgegouville.myapplication.presentation.dialog.MainDialog
+import com.goetzgegouville.myapplication.presentation.mainscreen.viewmodel.MainScreenViewModel
+import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.viewmodel.ShoppingListViewModel
 import com.goetzgegouville.myapplication.ui.theme.LightGreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    viewModel: MainScreenViewModel = hiltViewModel()
+) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -28,7 +34,9 @@ fun MainScreen() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = {
+                          viewModel.onEvent(MainScreenEvent.OnShowEditDialog)
+                },
                 containerColor = LightGreen,
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
@@ -44,5 +52,6 @@ fun MainScreen() {
         floatingActionButtonPosition = FabPosition.Center
     ) {
         NavigationGraph(navController)
+        MainDialog(viewModel)
     }
 }

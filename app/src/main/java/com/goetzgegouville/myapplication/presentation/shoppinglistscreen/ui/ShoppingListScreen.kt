@@ -21,5 +21,4 @@ fun ShoppingListScreen(
             .wrapContentWidth()
             .wrapContentHeight()
     )
-    MainDialog(viewModel)
 }
