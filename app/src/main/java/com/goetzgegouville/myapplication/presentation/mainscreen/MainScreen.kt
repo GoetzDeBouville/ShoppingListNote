@@ -18,7 +18,6 @@ import com.goetzgegouville.myapplication.R
 import com.goetzgegouville.myapplication.navigation.NavigationGraph
 import com.goetzgegouville.myapplication.presentation.dialog.MainDialog
 import com.goetzgegouville.myapplication.presentation.mainscreen.viewmodel.MainScreenViewModel
-import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.viewmodel.ShoppingListViewModel
 import com.goetzgegouville.myapplication.ui.theme.LightGreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnusedMaterialScaffoldPaddingParameter")
@@ -35,7 +34,7 @@ fun MainScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                          viewModel.onEvent(MainScreenEvent.OnShowEditDialog)
+                    viewModel.onEvent(MainScreenEvent.OnShowEditDialog)
                 },
                 containerColor = LightGreen,
                 modifier = Modifier

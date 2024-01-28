@@ -1,5 +1,6 @@
 package com.goetzgegouville.myapplication.domain.impl
 
+import android.util.Log
 import com.goetzgegouville.myapplication.domain.api.ShoppingListDbConverter
 import com.goetzgegouville.myapplication.domain.api.ShoppingListInteractor
 import com.goetzgegouville.myapplication.domain.api.ShoppingListRepository
@@ -12,6 +13,7 @@ class ShoppingListInteractorImpl(
     private val repository: ShoppingListRepository
 ) : ShoppingListInteractor {
     override suspend fun insertListToDb(item: ShoppingListItem) {
+        Log.i("MyLog", "interactor insert item = $item")
         repository.insertListToDb(converter.map(item))
     }
 

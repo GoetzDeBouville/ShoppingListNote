@@ -1,5 +1,6 @@
 package com.goetzgegouville.myapplication.data.impl
 
+import android.util.Log
 import com.goetzgegouville.myapplication.data.models.ShoppingListItemEntity
 import com.goetzgegouville.myapplication.data.db.ShoppingListItemDao
 import com.goetzgegouville.myapplication.domain.api.ShoppingListRepository
@@ -11,6 +12,7 @@ class ShoppingListRepositoryImpl(
     private val dao: ShoppingListItemDao
 ) : ShoppingListRepository {
     override suspend fun insertListToDb(item: ShoppingListItemEntity) {
+        Log.i("MyLog", "repository insert item = $item")
         withContext(Dispatchers.IO) {
             dao.insertListToDb(item)
         }

@@ -1,6 +1,9 @@
 package com.goetzgegouville.myapplication.presentation.shoppinglistscreen.viewmodel
 
+import android.widget.Toast
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.goetzgegouville.myapplication.domain.api.ShoppingListInteractor
@@ -46,6 +49,7 @@ class ShoppingListViewModel @Inject constructor(
                 }
                 openDialog.value = false
             }
+
             is DialogEvent.OnTextChange -> editTableText.value = event.text
         }
     }
@@ -53,11 +57,13 @@ class ShoppingListViewModel @Inject constructor(
     fun onEvent(event: ShoppingListEvent) {
         when (event) {
             is ShoppingListEvent.OnItemSave -> {
+                if (editTableText.value.isEmpty()) return
+
                 viewModelScope.launch {
                     interactor.insertListToDb(
                         ShoppingListItem(
                             listItem?.id,
-                            listItem?.name ?: "",
+                            editTableText.value,
                             listItem?.time ?: "",
                             listItem?.allItemsNumber ?: 0,
                             listItem?.selectedItemsNumber ?: 0
@@ -69,12 +75,14 @@ class ShoppingListViewModel @Inject constructor(
             is ShoppingListEvent.OnItemClick -> {
                 sendUiEvent(UiEvent.Navigate(event.route))
             }
+
             is ShoppingListEvent.OnShowDeleteDialog -> {
                 listItem = event.item
                 openDialog.value = true
                 dialogTitle.value = "Delete this item?"
                 showEditableText.value = false
             }
+
             is ShoppingListEvent.OnShowEditDialog -> {
                 listItem = event.item
                 openDialog.value = true

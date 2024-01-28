@@ -1,6 +1,5 @@
 package com.goetzgegouville.myapplication.presentation.dialog
 
-import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -107,7 +106,6 @@ fun MainDialog(dialogController: DialogController) {
                             value = dialogController.editTableText.value,
                             onValueChange = { input ->
                                 inputText = input
-                                Log.i("MyLog", "inputtext = $inputText\ninput = $input")
                                 dialogController.onDialogEvent(DialogEvent.OnTextChange(input))
                             },
                             label = {

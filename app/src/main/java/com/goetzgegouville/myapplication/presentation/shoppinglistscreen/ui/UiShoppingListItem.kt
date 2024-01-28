@@ -1,6 +1,8 @@
 package com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -24,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.goetzgegouville.myapplication.R
 import com.goetzgegouville.myapplication.domain.models.ShoppingListItem
+import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ShoppingListEvent
 import com.goetzgegouville.myapplication.ui.theme.BlackText
 import com.goetzgegouville.myapplication.ui.theme.GrayText
 import com.goetzgegouville.myapplication.ui.theme.Green
@@ -36,9 +40,11 @@ import kotlin.random.Random
 
 @Composable
 fun UiShoppingListItem(
-    item: ShoppingListItem
+    item: ShoppingListItem,
+    onEvent: (ShoppingListEvent) -> Unit
 ) {
     val progress = Random.nextFloat()
+    val context = LocalContext.current
 //                   val progress = item.selectedItemsNumber.toFloat() / item.allItemsNumber
     ConstraintLayout(
         modifier = Modifier.padding(
@@ -61,6 +67,9 @@ fun UiShoppingListItem(
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                }
+                .clickable {
+                           Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
                 },
             colors = CardColors(
                 containerColor = Color.White,
@@ -108,7 +117,9 @@ fun UiShoppingListItem(
         }
 
         IconButton(
-            onClick = {},
+            onClick = {
+                onEvent(ShoppingListEvent.OnShowDeleteDialog(item))
+            },
             modifier = Modifier
                 .constrainAs(deleteButton) {
                     bottom.linkTo(card.top)
@@ -130,7 +141,9 @@ fun UiShoppingListItem(
         }
 
         IconButton(
-            onClick = {},
+            onClick = {
+                      onEvent(ShoppingListEvent.OnShowEditDialog(item))
+            },
             modifier = Modifier
                 .constrainAs(editButton) {
                     bottom.linkTo(card.top)

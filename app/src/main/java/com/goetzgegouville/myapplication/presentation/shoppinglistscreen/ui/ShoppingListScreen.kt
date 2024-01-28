@@ -3,7 +3,6 @@ package com.goetzgegouville.myapplication.presentation.shoppinglistscreen.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.goetzgegouville.myapplication.presentation.dialog.MainDialog
 import com.goetzgegouville.myapplication.presentation.shoppinglistscreen.viewmodel.ShoppingListViewModel
 import com.goetzgegouville.myapplication.ui.theme.LightGray
 
@@ -30,8 +30,11 @@ fun ShoppingListScreen(
             ),
         contentPadding = PaddingValues(bottom = 64.dp)
     ) {
-        items(itemlist.value) {item ->
-            UiShoppingListItem(item)
+        items(itemlist.value) { item ->
+            UiShoppingListItem(item) { event ->
+                viewModel.onEvent(event)
+            }
         }
     }
+    MainDialog(viewModel)
 }
